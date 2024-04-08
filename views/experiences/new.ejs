@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../partials/header', { title }) %>
+  <body class="newExperienceBody">
+    <form action="/experiences" method="POST" class="experiences-form">
+      <h1 class="h1-experiences-new">Add Your Next Adventure Here...</h1>
+      <label class="experiences-title-label"
+        >Title:
+        <input type="text" name="title" />
+      </label>
+      <label class="experiences-description-label"
+        >Description:
+        <textarea name="description" rows="4" cols="50"></textarea>
+      </label>
+      <label class="experiences-created-label">Created on:
+        <input type="date" name="created" class="experiences-date" />
+      </label>
+      <label >Deadline: <input type="date" name="deadline" class="experiences-deadline-date"> </label>
+      <label >Location: <input type="text" name="location" class="experiences-location"> </label>
+      <button type="submit" class="add-experience-button">Add Experience</button>
+    </form>
+
+    <%- include('../partials/footer') %>
+  </body>
+</html>
