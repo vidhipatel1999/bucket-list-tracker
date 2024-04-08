@@ -35,3 +35,5 @@ const experienceSchema = new Schema({
       }
   },
 });
+
+module.exports = mongoose.model('Experience', experienceSchema)
