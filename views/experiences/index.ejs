@@ -1,0 +1,29 @@
+<!DOCTYPE html> 
+<html>
+    <%- include('../partials/head') %>
+    <body>
+        <%- include('../partials/header') %>
+
+        <table id="content-see-all">
+            <thead id="labelSeeAllContainer">
+                <tr >
+                    <th class="label-name">Name</th>
+                    <th class="label-created" >Created On</th>
+                    <th class="label-deadline">Deadline</th>
+                    <th class="label-location">Location</th>
+                </tr>
+            </thead>
+            <tbody id="see-experience-body">
+                <% experiences.forEach(exp => { %>
+                    <tr>
+                        <td class="see-experience-name"><%= exp.name %></td>
+                        <td class="see-experience-created"><%= exp.created %></td>
+                        <td class="see-experience-deadline"><%= exp.deadline %></td>
+                        <td class="see-experience-location"><%= exp.location %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        <%- include('../partials/footer') %>
+    </body>
+</html>
