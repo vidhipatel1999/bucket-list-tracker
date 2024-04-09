@@ -1,26 +1,26 @@
+<%- include('../partials/header') %>
 
-        <%- include('../partials/header') %>
+<table id="list">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Location</th>
+      <th>Created</th>
+      <th>Deadline</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% experiences.forEach(function(e) { %>
+      <tr>
+        <td><%= e.name %></td>
+        <td><%= e.location %></td>
+        <td><%= e.created %></td>
+        <td><%= e.deadline	 %></td>
+        <td><a href="/experiences/<%= e._id %>">DETAILS</a></td>
+      </tr>
+      <% }); %>
+    </tbody>
+  </table>
 
-        <table id="content-see-all">
-            <thead id="labelSeeAllContainer">
-                <tr >
-                    <th class="label-name">Name</th>
-                    <th class="label-created" >Created On</th>
-                    <th class="label-deadline">Target Deadline</th>
-                    <th class="label-location">Location</th>
-                </tr>
-            </thead>
-            <tbody id="see-experience-body">
-                <% experiences.forEach(exp => { %>
-                    <tr>
-                        <td class="see-experience-name"><%= exp.name %></td>
-                        <td class="see-experience-created"><%= exp.created %></td>
-                        <td class="see-experience-deadline"><%= exp.deadline %></td>
-                        <td class="see-experience-location"><%= exp.location %></td>
-                    </tr>
-                <% }) %>
-            </tbody>
-        </table>
 
-        <%- include('../partials/footer') %>
-   
+<%- include('../partials/footer') %>

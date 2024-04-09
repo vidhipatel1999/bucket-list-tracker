@@ -1,0 +1,23 @@
+
+    <%- include('../partials/header') %>
+    <section id="show-table">
+      <table >
+        <thead class="show-head">
+          <tr>
+            <th class="show-name">Name</th>
+            <th class="show-created">Created On</th>
+            <th class="show-deadline">Deadline</th>
+            <th class="show-location">Location</th>
+            <br/>
+          </tr>
+        </thead>
+        <tbody class="show-body">
+          <tr>
+            <td class="show-name-body"><%= experience.name%></td>
+            <td class="show-created-body"><%= experience.created %></td>
+            <td class="show-deadline-body"><%= experience.deadline %></td>
+            <td class="show-location-body"><%= experience.location %></td>
+          </tr>
+        </tbody>
+      </table>
+      <%- include('../partials/footer') %>

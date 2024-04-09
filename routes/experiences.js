@@ -9,5 +9,6 @@ const experiencesCtrl = require('../controllers/experiences');
 router.get('/new', experiencesCtrl.new);
 router.post('/', experiencesCtrl.create);
 router.get('/', experiencesCtrl.index);
+router.get('/:id', experiencesCtrl.show);
 
 module.exports = router;

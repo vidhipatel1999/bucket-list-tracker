@@ -1,5 +1,6 @@
 const Experience = require('../models/experience');
 
+
 async function index(req, res) {
     try {
         const experiences = await Experience.find({});
@@ -24,8 +25,21 @@ async function create(req, res) {
     }
 }
 
+async function show(req, res) {
+    try {
+      const experience = await Experience.findById(req.params.id);
+      
+      res.render('experiences/show', { title: "Experience details", experience });
+  
+    } catch (error) {
+      console.log(error);
+      res.render('error', { message: "Showing experience details failed.", error });
+    }
+}
+
 module.exports = {
     index,
     new: newExperience,
-    create
+    create,
+    show
 };

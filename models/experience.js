@@ -7,9 +7,6 @@ const experienceSchema = new Schema({
       type: String,
       required: true
   },
-  location: {
-      type: String 
-  },
   created: {
       type: Date,
       default: function(){
@@ -34,6 +31,9 @@ const experienceSchema = new Schema({
           return val.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' });
       }
   },
+  location: {
+    type: String 
+},
 });
 
 
