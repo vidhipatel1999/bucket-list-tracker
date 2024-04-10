@@ -1,23 +1,24 @@
 
-    <%- include('../partials/header') %>
-    <section id="show-table">
-      <table >
-        <thead class="show-head">
-          <tr>
-            <th class="show-name">Name</th>
-            <th class="show-created">Created On</th>
-            <th class="show-deadline">Deadline</th>
-            <th class="show-location">Location</th>
-            <br/>
-          </tr>
-        </thead>
-        <tbody class="show-body">
-          <tr>
-            <td class="show-name-body"><%= experience.name%></td>
-            <td class="show-created-body"><%= experience.created %></td>
-            <td class="show-deadline-body"><%= experience.deadline %></td>
-            <td class="show-location-body"><%= experience.location %></td>
-          </tr>
-        </tbody>
-      </table>
-      <%- include('../partials/footer') %>
+<%- include('../partials/header') %>
+
+<section id="show-page">
+ <div>Name: </div>
+ <div><%= experience.name %></div>
+ <div>Created On: </div>
+ <div><%= experience.created %></div>
+ <div>Deadline: </div>
+ <div><%= experience.deadline%></div>
+ <div>Location: </div>
+ <div><%= experience.location %></div>
+ </section>
+ <br><br><h2>Notes</h2>
+ <form id="add-review-form" method="POST"
+   action="/experiences/<%= experience._id %>/reviews">
+   <label>Add Notes:</label>
+   <textarea name="content"></textarea>
+   </select>
+   <input type="submit" value="Add My Note">
+ </form>
+
+
+ <%- include('../partials/footer') %>
