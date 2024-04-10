@@ -4,18 +4,18 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Location</th>
       <th>Created</th>
       <th>Deadline</th>
+      <th>Location</th>
     </tr>
   </thead>
   <tbody>
     <% experiences.forEach(function(e) { %>
       <tr>
         <td><%= e.name %></td>
-        <td><%= e.location %></td>
         <td><%= e.created %></td>
         <td><%= e.deadline	 %></td>
+        <td><%= e.location %></td>
         <td><a href="/experiences/<%= e._id %>">DETAILS</a></td>
       </tr>
       <% }); %>

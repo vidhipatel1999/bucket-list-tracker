@@ -11,14 +11,34 @@
  <div>Location: </div>
  <div><%= experience.location %></div>
  </section>
+
  <br><br><h2>Notes</h2>
- <form id="add-review-form" method="POST"
-   action="/experiences/<%= experience._id %>/reviews">
+ <form id="add-notes-form" method="POST"
+   action="/experiences/<%= experience._id %>/notes">
    <label>Add Notes:</label>
    <textarea name="content"></textarea>
-   </select>
    <input type="submit" value="Add My Note">
  </form>
 
+ <% if (experience.notes.length) { %>
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+    <tbody>
+  <% experience.notes.forEach(function(n) { %>
+    <tr>
+      <td><%= n.createdAt.toLocaleDateString() %></td>
+      <td><%= n.content %></td>
+    </tr>
+    <% }); %>
+  </tbody>
+</table>
+<% } else { %>
+  <h5>No Reviews Yet</h5>
+<% } %>
 
- <%- include('../partials/footer') %>
+<%- include('../partials/footer') %>
