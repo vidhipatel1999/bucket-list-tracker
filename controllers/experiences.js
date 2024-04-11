@@ -91,6 +91,3 @@ async function updatePage(req, res) {
   } 
    
 }
-
-    
-    

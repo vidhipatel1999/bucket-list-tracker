@@ -17,16 +17,14 @@ const experienceSchema = new Schema({
       required: true
   },
   created: {
-      type: Date,
-      default: function(){
-          return new Date("2021-11-21")
-      },
-      get: function(val) {
-          if (!val) {
-              return null;
-          }
-          return val.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' });
-      }
+    type: Date,
+    default: Date.now,
+    get: function(val) {
+        if (!val) {
+            return null;
+        }
+        return val.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' });
+    }  
   },
   deadline: {
       type: Date,
