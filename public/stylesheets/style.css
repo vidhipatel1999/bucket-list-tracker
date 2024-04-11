@@ -148,4 +148,12 @@ li {
   font-weight: bold;
 }
 
+.homepage-background {
+  background-image: url('../images/homepage.jpg');
+  background-size: cover; /* Cover the entire page */
+  background-position: center; /* Center the background image */
+  height: 100vh; /* Full height */
+  width: 100%; /* Full width */
+}
+
 

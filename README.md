@@ -1,5 +1,5 @@
 # <Bucket List Tracker>
-A description of your game. Background info of the game is a nice touch.
+This tracker 
 
 # Screenshot
 
