@@ -1,0 +1,14 @@
+<%- include('../partials/header') %>
+<form id="new-form" action="/experiences/<%= experience._id %>?_method=PUT"  method="POST">
+    <label>Name:</label>
+    <input value="<%= experience.name %>" type="text" name="name">
+    <label>Created On:</label>
+    <input type="date" name="experiences-date">
+    <label>Target Deadline</label>
+    <input type="date" name="deadline">
+    <label>Location:</label>
+    <input value="<%= experience.location %>" type="text" name="location">
+    <input type="submit" value="Add Experience">
+   </form>
+   <%- include('../partials/footer') %>
+   

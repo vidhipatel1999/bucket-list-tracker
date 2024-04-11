@@ -6,6 +6,8 @@ module.exports = {
     create,
     show,
     delete: deleteExperience,
+    update: updateExperience,
+    updatePage
 };
 
 
@@ -62,10 +64,33 @@ async function show(req, res) {
 
 async function deleteExperience(req, res) {
     try{
-        await Experience.findByIdAndRemove(req.params.id);
-        res.redirect('/experience')
+        const experience = await Experience.findByIdAndDelete(req.params.id);
+        console.log("deleted an", experience);
+        res.redirect('/experiences')
         } catch(error){
             console.log(error)
             res.render('error', {title: 'Something went wrong'})
     }
 }
+async function updateExperience(req, res) {
+  try{
+    const experienceUpdate = await Experience.findByIdAndUpdate(req.params.id, req.body)
+    res.redirect('/experiences')
+  } catch(error) {
+    console.log(error)
+    res.render('error', {title: 'Something went wrong'})
+  } 
+} 
+async function updatePage(req, res) {
+    try {
+    const experience = await Experience.findById(req.params.id);
+    res.render('experiences/update', { title: 'Update Experience', experience });
+} catch(error) {
+    console.log(error)
+    res.render('error', {title: 'Something went wrong'})
+  } 
+   
+}
+
+    
+    

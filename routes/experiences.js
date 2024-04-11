@@ -8,9 +8,12 @@ const ensureLoggedIn = require('../config/ensureLoggedIn');
 router.get('/', experiencesCtrl.index);
 // GET /experiences/new
 router.get('/new', ensureLoggedIn, experiencesCtrl.new);
+
 // GET /experiences/:id (show functionality) MUST be below new route
 router.get('/:id', experiencesCtrl.show);
 // POST /experiences
 router.post('/', ensureLoggedIn, experiencesCtrl.create);
-
+router.delete('/:id', ensureLoggedIn, experiencesCtrl.delete);
+router.put('/:id', ensureLoggedIn, experiencesCtrl.update);
+router.get('/:id/update', ensureLoggedIn, experiencesCtrl.updatePage);
 module.exports = router;
