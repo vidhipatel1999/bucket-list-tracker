@@ -4,7 +4,8 @@ module.exports = {
     index,
     new: newExperience,
     create,
-    show
+    show,
+    delete: deleteExperience,
 };
 
 
@@ -59,3 +60,12 @@ async function show(req, res) {
     }
 }
 
+async function deleteExperience(req, res) {
+    try{
+        await Experience.findByIdAndRemove(req.params.id);
+        res.redirect('/experience')
+        } catch(error){
+            console.log(error)
+            res.render('error', {title: 'Something went wrong'})
+    }
+}

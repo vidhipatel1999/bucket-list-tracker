@@ -17,10 +17,12 @@
         <td><%= e.deadline	 %></td>
         <td><%= e.location %></td>
         <td><a href="/experiences/<%= e._id %>">DETAILS</a></td>
+        <td><form method="POST" action="/experiences/<%= e._id %>?_method=DELETE" class="delete-form">
+          <button type="submit" class="delete-experience-button">Delete Item</button></form></td>
       </tr>
       <% }); %>
     </tbody>
   </table>
 
 
-<%- include('../partials/footer') %>
+<%- include('../partials/footer') %> 
