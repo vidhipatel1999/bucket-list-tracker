@@ -8,7 +8,6 @@ const ensureLoggedIn = require('../config/ensureLoggedIn');
 router.get('/', experiencesCtrl.index);
 // GET /experiences/new
 router.get('/new', ensureLoggedIn, experiencesCtrl.new);
-
 // GET /experiences/:id (show functionality) MUST be below new route
 router.get('/:id', experiencesCtrl.show);
 // POST /experiences
