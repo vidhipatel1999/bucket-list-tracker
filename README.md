@@ -1,4 +1,4 @@
-# <Your Project's Title>
+# <Bucket List Tracker>
 A description of your game. Background info of the game is a nice touch.
 
 # Screenshot
@@ -8,17 +8,19 @@ A description of your game. Background info of the game is a nice touch.
 
 # Technologies Used
 
-- JavaScript
+- Node.js
+- Express
+- Mongoose
+- MongoDB
 - HTML
 - CSS
-- CardStarter CSS Library
 
 # Getting Started
 
-[Click to View Project Planning](your Trello url here)
-[Click to Play Connect Four!](your deployment url here)
+[Click to View Project Planning](https://trello.com/invite/b/J76Slz9D/ATTI1351b5c9c52a3f64ee0f5f2cda3a69d671C688AA/bucket-list-tracker-project-2)
+[Click to access the Bucket List Tracker application!](https://bucket-list-tracker-d1e260f933d2.herokuapp.com/)
 
 # Next Steps
 
-- Future enhancement one...
-- Future enhancement two... 
+- Implement a status bar so users can keep track of their progess
+- Allow users the ability to upload pictures for each bucket list item
