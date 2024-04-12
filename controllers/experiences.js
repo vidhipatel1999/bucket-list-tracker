@@ -110,24 +110,25 @@ async function deleteExperience(req, res) {
 //------UPDATE: Update one experience in the database
 async function updateExperience(req, res) {
     try {
-        const experienceUpdate = await Experience.findByIdAndUpdate(req.params.id, req.body)
+        // First, find the experience to ensure the user is authorized to update it
+        const experience = await Experience.findById(req.params.id);
 
-        console.log('Checking if user.id matches experience.author')
-        console.log('AHHHHHHHHHHHHHHHHHHHHH', req.user.id, experience.author)
-
-        console.log('*************************')
-        console.log(experience)
-        console.log('*************************')
-        if (req.user.id === experience.author.toString()) {
-            console.log("Authorized to access Bucket List")
-        } else {
-            console.log("Not authorized")
-            return res.redirect('/')
+        // Check if the logged-in user is the author of the experience
+        if (req.user.id !== experience.author.toString()) {
+            console.log("Not authorized");
+            return res.redirect('/');  // Redirect to home or another appropriate page
         }
-        res.redirect('/experiences')
+
+        // If authorized, update the experience with new data
+        const experienceUpdate = await Experience.findByIdAndUpdate(req.params.id, req.body, { new: true });
+
+        console.log("Authorized to access Bucket List");
+        // Redirect to the bucket list view
+        res.redirect('/experiences');
     } catch (error) {
-        console.log(error)
-        res.render('error', { title: 'Something went wrong' })
+        console.error("Update error:", error);
+        // Instead of rendering an error page, redirect back to a safe page with error info
+        res.redirect(`/experiences/${req.params.id}/update?error=Unable to update experience`);
     }
 }
 
