@@ -64,10 +64,8 @@ async function show(req, res) {
         const experience = await Experience.findById(req.params.id);
 
         console.log('Checking if user.id matches experience.author')
-        console.log('AHHHHHHHHHHHHHHHHHHHHH', req.user.id, experience.author)
-        console.log('*************************')
+        console.log('Test', req.user.id, experience.author)
         console.log(experience)
-        console.log('*************************')
         if (req.user.id === experience.author.toString()) {
             console.log("Authorized to access Bucket List")
         } else {
@@ -87,12 +85,7 @@ async function show(req, res) {
 async function deleteExperience(req, res) {
     try {
         const experience = await Experience.findByIdAndDelete(req.params.id);
-        console.log('Checking if user.id matches experience.author')
-        console.log('AHHHHHHHHHHHHHHHHHHHHH', req.user.id, experience.author)
-
-        console.log('*************************')
         console.log(experience)
-        console.log('*************************')
         if (req.user.id === experience.author.toString()) {
             console.log("Authorized to access Bucket List")
         } else {
@@ -138,12 +131,9 @@ async function updatePage(req, res) {
         const experience = await Experience.findById(req.params.id);
 
         console.log('Checking if user.id matches experience.author')
-        console.log('AHHHHHHHHHHHHHHHHHHHHH', req.user.id, experience.author)
-
-        console.log('*************************')
+        console.log('Test', req.user.id, experience.author)
         console.log(experience)
-        console.log('*************************')
-        console.log('AHHHHHHHHHHHHHHHHHHHHH', req.user.id, experience.author)
+        console.log('Test', req.user.id, experience.author)
         if (req.user.id === experience.author.toString()) {
             console.log("Authorized to access Bucket List")
         } else {
