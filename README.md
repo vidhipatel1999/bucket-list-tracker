@@ -3,10 +3,10 @@ This tracker offers a personalized experience for logged-in users, enabling them
 
 # Screenshot
 
-<img src="./images/page1.png">
-<img src="./images/page2.png">
-<img src="./images/page3.png'">
-<img src="./images/page4.png'>
+<img src="./images/page1.jpg">
+<img src="./images/page2.jpg">
+<img src="./images/page3.jpg'">
+<img src="./images/page4.jpg">
 
 # Technologies Used
 
