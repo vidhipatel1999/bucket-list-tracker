@@ -12,37 +12,44 @@ const noteSchema = new Schema({
 });
 
 const experienceSchema = new Schema({
-  name: {
-      type: String,
-      required: true
-  },
-  created: {
-    type: Date,
-    default: Date.now,
-    get: function(val) {
-        if (!val) {
-            return null;
+    name: {
+        type: String,
+        required: true
+    },
+    author: {
+        type: mongoose.Schema.Types.ObjectId,
+        require: true,
+        ref: "User"
+    },
+
+    created: {
+        type: Date,
+        default: Date.now,
+        get: function (val) {
+            if (!val) {
+                return null;
+            }
+            return val.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' });
         }
-        return val.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' });
-    }  
-  },
-  deadline: {
-      type: Date,
-      default: function(){
-          return new Date(new Date().setFullYear(new Date().getFullYear() + 1))
-      },
-      get: function(val) {
-          if (!val) {
-              return null;
-          }
-          return val.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' });
-      }
-  },
-  location: {
-    type: String 
-},
-notes: [noteSchema]
-}, {timestamps: true
+    },
+    deadline: {
+        type: Date,
+        default: function () {
+            return new Date(new Date().setFullYear(new Date().getFullYear() + 1))
+        },
+        get: function (val) {
+            if (!val) {
+                return null;
+            }
+            return val.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' });
+        }
+    },
+    location: {
+        type: String
+    },
+    notes: [noteSchema]
+}, {
+    timestamps: true
 });
 
 

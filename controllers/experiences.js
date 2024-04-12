@@ -10,10 +10,11 @@ module.exports = {
     updatePage
 };
 
-
+//------INDEX: Display all experiences
 async function index(req, res) {
     try {
-        const experiences = await Experience.find({});
+        // fetch all experiences that match the user.id found on the author property of the experience
+        const experiences = await Experience.find({ author: req.user.id });
         res.render('experiences/index', { title: 'All Experiences', experiences });
     } catch (error) {
         console.log(error);
@@ -21,11 +22,17 @@ async function index(req, res) {
     }
 }
 
-function newExperience(req, res) {
-    res.render('experiences/new', { title: 'Add Experience', errorMsg: '' });
+//------NEW: Send form to add new experience
+async function newExperience(req, res) {
+    console.log("Sending new experience form");
+    console.log(req.user.id);
+    res.render('experiences/new', { title: 'Add Experience', userID: req.user.id, errorMsg: '' });
 }
 
+//------CREATE/POST: Add new experience to database
 async function create(req, res) {
+    console.log("Posting new bucketlist item");
+    console.log("From inside create function", req.body);
     // Convert nowShowing's checkbox of nothing or "on" to boolean
     // Check if this or any similar property needs modification to suit experiences better
     req.body.nowShowing = !!req.body.nowShowing;
@@ -37,11 +44,11 @@ async function create(req, res) {
 
     try {
         // Use the Experience model to create a new document in the database
-        const experience = await Experience.create(req.body);
-
+        const newExperience = await Experience.create(req.body);
+        console.log(newExperience);
         // Redirect to the new experience's detail page
         // Ensure your routing reflects this change from movies to experiences
-        res.redirect(`/experiences/${experience._id}`);
+        res.redirect(`/experiences/${newExperience._id}`);
     } catch (err) {
         // Handle any errors, such as validation errors, that may occur during creation
         console.log(err);
@@ -50,44 +57,104 @@ async function create(req, res) {
     }
 }
 
+
+//------SHOW: Display details for one experience
 async function show(req, res) {
     try {
-      const experience = await Experience.findById(req.params.id);
-      
-      res.render('experiences/show', { title: "Experience details", experience });
-  
+        const experience = await Experience.findById(req.params.id);
+
+        console.log('Checking if user.id matches experience.author')
+        console.log('AHHHHHHHHHHHHHHHHHHHHH', req.user.id, experience.author)
+        console.log('*************************')
+        console.log(experience)
+        console.log('*************************')
+        if (req.user.id === experience.author.toString()) {
+            console.log("Authorized to access Bucket List")
+        } else {
+            console.log("Not authorized")
+            return res.redirect('/')
+        }
+
+        res.render('experiences/show', { title: "Experience details", experience });
+
     } catch (error) {
-      console.log(error);
-      res.render('error', { message: "Showing experience details failed.", error });
+        console.log(error);
+        res.render('error', { message: "Showing experience details failed.", error });
     }
 }
 
+//------DELETE: Remove one experience from the database
 async function deleteExperience(req, res) {
-    try{
+    try {
         const experience = await Experience.findByIdAndDelete(req.params.id);
+        console.log('Checking if user.id matches experience.author')
+        console.log('AHHHHHHHHHHHHHHHHHHHHH', req.user.id, experience.author)
+
+        console.log('*************************')
+        console.log(experience)
+        console.log('*************************')
+        if (req.user.id === experience.author.toString()) {
+            console.log("Authorized to access Bucket List")
+        } else {
+            console.log("Not authorized")
+            return res.redirect('/')
+        }
         console.log("deleted an", experience);
         res.redirect('/experiences')
-        } catch(error){
-            console.log(error)
-            res.render('error', {title: 'Something went wrong'})
+    } catch (error) {
+        console.log(error)
+        res.render('error', { title: 'Something went wrong' })
     }
 }
+
+//------UPDATE: Update one experience in the database
 async function updateExperience(req, res) {
-  try{
-    const experienceUpdate = await Experience.findByIdAndUpdate(req.params.id, req.body)
-    res.redirect('/experiences')
-  } catch(error) {
-    console.log(error)
-    res.render('error', {title: 'Something went wrong'})
-  } 
-} 
+    try {
+        const experienceUpdate = await Experience.findByIdAndUpdate(req.params.id, req.body)
+
+        console.log('Checking if user.id matches experience.author')
+        console.log('AHHHHHHHHHHHHHHHHHHHHH', req.user.id, experience.author)
+
+        console.log('*************************')
+        console.log(experience)
+        console.log('*************************')
+        if (req.user.id === experience.author.toString()) {
+            console.log("Authorized to access Bucket List")
+        } else {
+            console.log("Not authorized")
+            return res.redirect('/')
+        }
+        res.redirect('/experiences')
+    } catch (error) {
+        console.log(error)
+        res.render('error', { title: 'Something went wrong' })
+    }
+}
+
+//------UPDATE PAGE: Display form to update one experience
 async function updatePage(req, res) {
     try {
-    const experience = await Experience.findById(req.params.id);
-    res.render('experiences/update', { title: 'Update Experience', experience });
-} catch(error) {
-    console.log(error)
-    res.render('error', {title: 'Something went wrong'})
-  } 
-   
+        const experience = await Experience.findById(req.params.id);
+
+        console.log('Checking if user.id matches experience.author')
+        console.log('AHHHHHHHHHHHHHHHHHHHHH', req.user.id, experience.author)
+
+        console.log('*************************')
+        console.log(experience)
+        console.log('*************************')
+        console.log('AHHHHHHHHHHHHHHHHHHHHH', req.user.id, experience.author)
+        if (req.user.id === experience.author.toString()) {
+            console.log("Authorized to access Bucket List")
+        } else {
+            console.log("Not authorized")
+            return res.redirect('/')
+        }
+
+
+        res.render('experiences/update', { title: 'Update Experience', experience });
+    } catch (error) {
+        console.log(error)
+        res.render('error', { title: 'Something went wrong' })
+    }
+
 }

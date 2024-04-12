@@ -20,7 +20,7 @@ a {
   height: 30px;
 }
 
-body > nav {
+body>nav {
   grid-area: nav;
   background-color: thistle;
   display: flex;
@@ -29,13 +29,13 @@ body > nav {
   padding: 0 20px 0 30px;
 }
 
-nav > img {
+nav>img {
   width: 34px;
   object-fit: contain;
   margin-right: auto;
 }
 
-body > main {
+body>main {
   grid-area: main;
   display: flex;
   flex-direction: column;
@@ -45,23 +45,23 @@ body > main {
   overflow-y: scroll;
 }
 
-body > main h1:first-child {
+body>main h1:first-child {
   margin-bottom: 50px;
 }
 
-nav > a {
+nav>a {
   margin: 20px;
   text-decoration: none;
   padding: 10px;
   border-radius: 5px;
 }
 
-nav > a:hover {
+nav>a:hover {
   color: white;
   background-color: #424748;
 }
 
-nav > a.active {
+nav>a.active {
   color: white;
 }
 
@@ -99,7 +99,8 @@ table td {
   text-align: center;
 }
 
-#list td:nth-child(2), #list td:nth-child(3){
+#list td:nth-child(2),
+#list td:nth-child(3) {
   min-width: 100px;
 }
 
@@ -125,7 +126,8 @@ table td {
   font-weight: bold;
 }
 
-#add-review-form, #add-performer-form {
+#add-review-form,
+#add-performer-form {
   display: grid;
   grid-template-columns: auto auto;
   grid-gap: 1rem;
@@ -150,10 +152,27 @@ li {
 
 .homepage-background {
   background-image: url('../images/homepage.jpg');
-  background-size: cover; /* Cover the entire page */
-  background-position: center; /* Center the background image */
-  height: 100vh; /* Full height */
-  width: 100%; /* Full width */
+  background-size: cover;
+  /* Cover the entire page */
+  background-position: center;
+  /* Center the background image */
+  height: 100vh;
+  /* Full height */
+  width: 100%;
+  /* Full width */
 }
 
+.delete-experience-button {
+  background-color: lightcoral;  /* Red background color */
+  color: white;              /* White text color */
+  border: none;              /* No border */
+  padding: 10px 20px;        /* Padding around the text */
+  cursor: pointer;           /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  font-weight: bold;         /* Bold font for the text */
+  border-radius: 5px;        /* Rounded corners */
+}
 
+.delete-experience-button:hover {
+  background-color: #cc0000;  /* Darker red background on hover */
+}

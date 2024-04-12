@@ -1,17 +1,27 @@
 const express = require('express');
 const router = express.Router();
-// Assuming you've renamed your controller module to reflect the focus on experiences
+
 const experiencesCtrl = require('../controllers/experiences');
 const ensureLoggedIn = require('../config/ensureLoggedIn');
+const Experience = require('../models/experience');
+
+
+router.use('/', (req, res, next) => {
+    // console.log('experiences.js router.use req.user', req);
+    next();
+});
+
 
 // GET /experiences
-router.get('/', experiencesCtrl.index);
+router.get('/', ensureLoggedIn, experiencesCtrl.index);
 // GET /experiences/new
 router.get('/new', ensureLoggedIn, experiencesCtrl.new);
-// GET /experiences/:id (show functionality) MUST be below new route
-router.get('/:id', experiencesCtrl.show);
 // POST /experiences
 router.post('/', ensureLoggedIn, experiencesCtrl.create);
+
+// GET /experiences/:id (show functionality) MUST be below new route
+router.get('/:id', ensureLoggedIn, experiencesCtrl.show);
+
 router.delete('/:id', ensureLoggedIn, experiencesCtrl.delete);
 router.put('/:id', ensureLoggedIn, experiencesCtrl.update);
 router.get('/:id/update', ensureLoggedIn, experiencesCtrl.updatePage);

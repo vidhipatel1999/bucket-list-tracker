@@ -1,6 +1,6 @@
 
 <%- include('../partials/header') %>
-
+<div class="new-background"></div>
 <body class="new-page"></body>
 <form id="new-form" action="/experiences" method="POST">
  <label>Name:</label>
@@ -12,6 +12,8 @@
  <label>Location:</label>
  <input type="text" name="location">
  <input type="submit" value="Add Experience">
+ <% console.log("From views folder", userID) %>
+ <input readonly type="text" name="author" id="author" value="<%=userID%>" />
 </form>
 
 

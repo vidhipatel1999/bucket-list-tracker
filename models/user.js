@@ -8,9 +8,11 @@ const userSchema = new Schema({
     required: true
   },
   email: String,
-  avatar: String
-}, {
-  timestamps: true
+  avatar: String,
+  bucketListItems: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Experience"
+  }],
 });
 
 
