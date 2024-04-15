@@ -33,11 +33,7 @@ async function newExperience(req, res) {
 async function create(req, res) {
     console.log("Posting new bucketlist item");
     console.log("From inside create function", req.body);
-    // Convert nowShowing's checkbox of nothing or "on" to boolean
-    // Check if this or any similar property needs modification to suit experiences better
     req.body.nowShowing = !!req.body.nowShowing;
-
-    // Remove empty properties so that defaults will be applied
     for (let key in req.body) {
         if (req.body[key] === '') delete req.body[key];
     }
@@ -46,13 +42,9 @@ async function create(req, res) {
         // Use the Experience model to create a new document in the database
         const newExperience = await Experience.create(req.body);
         console.log(newExperience);
-        // Redirect to the new experience's detail page
-        // Ensure your routing reflects this change from movies to experiences
         res.redirect(`/experiences/${newExperience._id}`);
     } catch (err) {
-        // Handle any errors, such as validation errors, that may occur during creation
         console.log(err);
-        // Make sure to update the path to the template if it's different for experiences
         res.render('experiences/new', { errorMsg: err.message });
     }
 }
@@ -103,10 +95,7 @@ async function deleteExperience(req, res) {
 //------UPDATE: Update one experience in the database
 async function updateExperience(req, res) {
     try {
-        // First, find the experience to ensure the user is authorized to update it
         const experience = await Experience.findById(req.params.id);
-
-        // Check if the logged-in user is the author of the experience
         if (req.user.id !== experience.author.toString()) {
             console.log("Not authorized");
             return res.redirect('/');  // Redirect to home or another appropriate page
@@ -120,7 +109,6 @@ async function updateExperience(req, res) {
         res.redirect('/experiences');
     } catch (error) {
         console.error("Update error:", error);
-        // Instead of rendering an error page, redirect back to a safe page with error info
         res.redirect(`/experiences/${req.params.id}/update?error=Unable to update experience`);
     }
 }
